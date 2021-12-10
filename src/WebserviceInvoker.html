@@ -1,0 +1,29 @@
+<html>
+<script type="text/javascript">
+	var xmlhttp;
+	function loadXMLDoc()
+	{
+		xmlhttp=null;
+		var url = "http://localhost:8080";
+
+		//var requestStr = "<Message target = \"socket://cin8044l:321\"><GetNames></GetNames></Message>";
+		var requestStr = "<Message>" + 
+							   "<Header>" +
+							      "<target>cn=Peer2</target>" +
+							   "</Header>" +
+							   "<Body>" +
+							      "<GetNames/>" +
+							   "</Body>" +
+							"</Message>";
+		var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+		xmlDoc.loadXML(requestStr);
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.open("POST",url,false);
+		xmlhttp.send(xmlDoc);
+		alert(xmlhttp.responseText);
+		//alert(xmlhttp.responseXML.xml);
+	}
+</script>
+    <body onload="loadXMLDoc()">
+    </body>
+</html>
